@@ -8,7 +8,9 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-const auth = require("./routes/auth") 
+const auth = require("./routes/auth");
+const cate = require("./routes/category")
+const product = require("./routes/product")
 const uri =
   "mongodb+srv://ecommerce:ecommerce@cluster0.eurlfla.mongodb.net/steelbazar?retryWrites=true&w=majority";
 mongoose.set("strictQuery", true);
@@ -21,9 +23,9 @@ mongoose
     console.log("databse connect");
   });
 
-
-app.use("/api/auth", auth )
-
+app.use("/api/auth", auth);
+app.use("/api/auth", cate);
+app.use("/api/auth", product);
 
 app.use("/", (req, res) => {
   res.send("Welcome to steel bazar");
